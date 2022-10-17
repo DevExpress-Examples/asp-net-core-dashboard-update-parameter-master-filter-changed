@@ -1,25 +1,17 @@
-# Product/Platform - Task
+# Dashboard for ASP.NET Core - How to update the parameter value when the item's master filter state is changed
 
-This is the repository template for creating new examples. Describe the solved task here.
+This example illustrates how to pass filter values to a parameter. The initial master filter state is set manually on page loading. The [ViewerApiExtensionOptions.onItemMasterFilterStateChanged](https://docs.devexpress.com/Dashboard/js-DevExpress.Dashboard.ViewerApiExtensionOptions?p=netframework#js_devexpress_dashboard_viewerapiextensionoptions_onitemmasterfilterstatechanged) event handler obtains changed master filter values. The [DashboardParameterDialogExtension.getParameters](https://docs.devexpress.com/Dashboard/js-DevExpress.Dashboard.DashboardParameterDialogExtension?p=netframework#js_devexpress_dashboard_dashboardparameterdialogextension_getparameters) method passes these values to the dashboard parameter. 
 
-Put a screenshot that illustrates the result here.
-
-Then, add implementation details (steps, code snippets, and other technical information in a free form), or add a link to an existing document with implementation details. 
+To assign default master filter values, use the [Dashboard State](https://docs.devexpress.com/Dashboard/118733/web-dashboard/aspnet-web-forms-dashboard-control/manage-dashboard-state).
 
 ## Files to Review
 
-- link.cs (VB: link.vb)
-- link.js
-- ...
-
 ## Documentation
 
-- link
-- link
-- ...
+- [Extensions Overview](https://docs.devexpress.com/Dashboard/117543/web-dashboard/ui-elements-and-customization/extensions-overview)
+- [Manage Dashboard State in ASP.NET Core Applications](hhttps://docs.devexpress.com/Dashboard/119997/web-dashboard/aspnet-core-dashboard-control/manage-dashboard-state)
 
 ## More Examples
 
-- link
-- link
-- ...
+- [Dashboard for Web Forms - How to specify a default dashboard state in code](https://github.com/DevExpress-Examples/web-forms-dashboard-specify-default-dashboard-state-in-code)
+- [Dashboard for Web Forms - How to specify dashboard parameter values on the client side](https://github.com/DevExpress-Examples/aspxdashboard-how-to-specify-dashboard-parameter-values-on-the-client-side-t495684)
