@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Sample Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="Orders" ComponentName="sqlDataSource1">
+      <Connection Name="NWindConnectionString" FromAppConfig="true" />
+      <Query Type="SelectQuery" Name="Orders">
+        <Tables>
+          <Table Name="Orders" />
+        </Tables>
+        <Columns>
+          <Column Table="Orders" Name="OrderID" />
+          <Column Table="Orders" Name="ShipName" />
+        </Columns>
+      </Query>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+    <SqlDataSource Name="CustOrdersDetail" ComponentName="sqlDataSource2">
+      <Connection Name="NWindConnectionString" FromAppConfig="true" />
+      <Query Type="SelectQuery" Name="CustOrdersDetail">
+        <Parameter Name="OrderIDParameter" Type="DevExpress.DataAccess.Expression">(System.String)(?OrderID)</Parameter>
+        <Tables>
+          <Table Name="OrderDetails" />
+          <Table Name="Products" />
+          <Relation Type="Inner" Parent="OrderDetails" Nested="Products">
+            <KeyColumn Parent="ProductID" Nested="ProductID" />
+          </Relation>
+        </Tables>
+        <Columns>
+          <Column Table="OrderDetails" Name="UnitPrice" />
+          <Column Table="Products" Name="ProductName" />
+        </Columns>
+        <Filter>[OrderDetails.OrderID] = ?OrderIDParameter</Filter>
+      </Query>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Parameters>
+    <Parameter Name="OrderID" Visible="false" />
+  </Parameters>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="Orders" DataSource="sqlDataSource1" DataMember="Orders">
+      <InteractivityOptions MasterFilterMode="Single" />
+      <DataItems>
+        <Measure DataMember="OrderID" DefaultId="DataItem0" />
+        <Dimension DataMember="OrderID" DefaultId="DataItem1">
+          <NumericFormat FormatType="General" />
+        </Dimension>
+        <Dimension DataMember="ShipName" DefaultId="DataItem2" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+    <Pie ComponentName="pieDashboardItem1" Name="Details" DataSource="sqlDataSource2" DataMember="CustOrdersDetail" ShowPieCaptions="false">
+      <DataItems>
+        <Measure DataMember="UnitPrice" DefaultId="DataItem0" />
+        <Dimension DataMember="ProductName" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutItem DashboardItem="gridDashboardItem1" Weight="165.41070082893745" />
+      <LayoutItem DashboardItem="pieDashboardItem1" Weight="165.41070082893745" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

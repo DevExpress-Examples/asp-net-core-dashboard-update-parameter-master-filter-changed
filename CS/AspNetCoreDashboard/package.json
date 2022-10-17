@@ -1,0 +1,11 @@
+{
+    "name": "aspnetcoredashboard",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "devextreme": "21.2.10",
+        "@devexpress/analytics-core": "21.2.10",
+        "devexpress-dashboard": "21.2.10",
+        "jquery-ui-dist": "^1.13.1"
+    }
+}
