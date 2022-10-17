@@ -14,7 +14,7 @@ To assign default master filter values, use the [Dashboard State](https://docs.d
 ## Documentation
 
 - [Extensions Overview](https://docs.devexpress.com/Dashboard/117543/web-dashboard/ui-elements-and-customization/extensions-overview)
-- [Manage Dashboard State in ASP.NET Core Applications](hhttps://docs.devexpress.com/Dashboard/119997/web-dashboard/aspnet-core-dashboard-control/manage-dashboard-state)
+- [Manage Dashboard State in ASP.NET Core Applications](https://docs.devexpress.com/Dashboard/119997/web-dashboard/aspnet-core-dashboard-control/manage-dashboard-state)
 
 ## More Examples
 
