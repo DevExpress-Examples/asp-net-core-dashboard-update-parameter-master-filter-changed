@@ -1,4 +1,5 @@
-﻿using DevExpress.DashboardAspNetCore;
+﻿using AspNetCoreDashboard.Code;
+using DevExpress.DashboardAspNetCore;
 using DevExpress.DashboardCommon;
 using DevExpress.DashboardWeb;
 using DevExpress.DataAccess.Excel;
@@ -15,6 +16,8 @@ namespace AspNetCoreDashboard {
             configurator.SetDashboardStorage(dashboardFileStorage);
 
             DataSourceInMemoryStorage dataSourceStorage = new DataSourceInMemoryStorage();
+
+            configurator.SetDashboardStateService(new CustomDashboardStateService());
 
             return configurator;
         }
