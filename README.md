@@ -5,11 +5,42 @@
 <!-- default badges end -->
 # Dashboard for ASP.NET Core - How to update the parameter value when the item's master filter state is changed
 
-This example illustrates how to pass filter values to a parameter. The initial master filter state is set manually on page loading. The [ViewerApiExtensionOptions.onItemMasterFilterStateChanged](https://docs.devexpress.com/Dashboard/js-DevExpress.Dashboard.ViewerApiExtensionOptions?p=netframework#js_devexpress_dashboard_viewerapiextensionoptions_onitemmasterfilterstatechanged) event handler obtains changed master filter values. The [DashboardParameterDialogExtension.getParameters](https://docs.devexpress.com/Dashboard/js-DevExpress.Dashboard.DashboardParameterDialogExtension?p=netframework#js_devexpress_dashboard_dashboardparameterdialogextension_getparameters) method passes these values to the dashboard parameter. 
+This example illustrates how to pass master filter values to a hidden dashboard parameter. 
 
-To assign default master filter values, use the [Dashboard State](https://docs.devexpress.com/Dashboard/118733/web-dashboard/aspnet-web-forms-dashboard-control/manage-dashboard-state).
+![Web Dashboard](web-dashboard.png)
+
+The **Orders** grid item is bound to the **Orders** data source, and the **Details** pie item is bound to the **CustOrdersDetail** data source. The grid's master filter values are passed to the **OrderID** dashboard parameter that is used to [filter](https://docs.devexpress.com/Dashboard/117192) the **CustOrdersDetail** data source (the **OrderIDParameter** query parameter is mapped to the **OrderID** dashboard parameter):
+
+![Data Source Filter](data-source-filter.png)
+
+The [ViewerApiExtensionOptions.onItemMasterFilterStateChanged](https://docs.devexpress.com/Dashboard/js-DevExpress.Dashboard.ViewerApiExtensionOptions?p=netframework#js_devexpress_dashboard_viewerapiextensionoptions_onitemmasterfilterstatechanged) event handler obtains changed master filter values. The [DashboardParameterDialogExtension.getParameters](https://docs.devexpress.com/Dashboard/js-DevExpress.Dashboard.DashboardParameterDialogExtension?p=netframework#js_devexpress_dashboard_dashboardparameterdialogextension_getparameters) method obtains the dashboard parameters. The [DashboardParameter.setValue](https://docs.devexpress.com/Dashboard/js-DevExpress.Dashboard.DashboardParameter#js_devexpress_dashboard_dashboardparameter_setvalue_value_) method passes master filter's values to the **OrderID** dashboard parameter:
+
+```js
+var dashboardControl;
+
+function onBeforeRender(s, e) {
+	dashboardControl = s.GetDashboardControl();
+	var viewerApiExtension = dashboardControl.findExtension('viewerApi');
+	if (viewerApiExtension)
+		viewerApiExtension.on('itemMasterFilterStateChanged', onItemMasterFilterStateChanged);
+}
+function onItemMasterFilterStateChanged(e) {
+	if (e.itemName == "gridDashboardItem1") {
+		var dashboardParameterDialogExtension = dashboardControl.findExtension('dashboardParameterDialog');
+		var parameters = dashboardParameterDialogExtension.getParameters();
+		var parameter1 = parameters.getParameterByName("OrderID");
+		parameter1.setValue(e.values[0][0]);
+	}
+}
+```
+
+The default master filter and dashboard parameter values are specified in the [dashboard state](https://docs.devexpress.com/Dashboard/118733/web-dashboard/aspnet-web-forms-dashboard-control/manage-dashboard-state).
 
 ## Files to Review
+
+- [Script.js](./CS/AspNetCoreDashboard/wwwroot/js/Script.js) 
+- [Index.cshtml](./CS/AspNetCoreDashboard/Pages/Index.cshtml)
+- [DashboardUtils.cs](./CS/AspNetCoreDashboard/Code/DashboardUtils.cs)
 
 ## Documentation
 
@@ -18,5 +49,6 @@ To assign default master filter values, use the [Dashboard State](https://docs.d
 
 ## More Examples
 
-- [Dashboard for Web Forms - How to specify a default dashboard state in code](https://github.com/DevExpress-Examples/web-forms-dashboard-specify-default-dashboard-state-in-code)
-- [Dashboard for Web Forms - How to specify dashboard parameter values on the client side](https://github.com/DevExpress-Examples/aspxdashboard-how-to-specify-dashboard-parameter-values-on-the-client-side-t495684)
+- [Dashboard for Web Forms - How to update the dashboard parameter value when the item's master filter state is changed](https://github.com/DevExpress-Examples/web-forms-dashboard-update-parameter-master-filter-changed)
+- [Dashboard for ASP.NET Core - How to specify a default dashboard state in code](https://github.com/DevExpress-Examples/aspnet-core-dashboard-specify-default-state-in-code)
+- [Dashboard for ASP.NET Core - How to specify dashboard parameter values on the client side](https://github.com/DevExpress-Examples/asp-net-core-dashboard-specify-dashboard-parameter-values-on-the-client)
