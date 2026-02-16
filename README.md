@@ -54,7 +54,7 @@ The default master filter and dashboard parameter values are specified in the [d
 - [Dashboard for ASP.NET Core - How to specify a default dashboard state in code](https://github.com/DevExpress-Examples/aspnet-core-dashboard-specify-default-state-in-code)
 - [Dashboard for ASP.NET Core - How to specify dashboard parameter values on the client side](https://github.com/DevExpress-Examples/asp-net-core-dashboard-specify-dashboard-parameter-values-on-the-client)
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=asp-net-core-dashboard-update-parameter-master-filter-changed&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=asp-net-core-dashboard-update-parameter-master-filter-changed&~~~was_helpful=no)
 
